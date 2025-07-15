@@ -3,6 +3,7 @@
   publish = "static" # A dummy directory, as this is a backend service
 
 [functions]
+  directory = "netlify/functions"
   included_files = ["app/**"]
 
 [[redirects]]
