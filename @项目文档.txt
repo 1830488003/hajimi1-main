@@ -19,3 +19,6 @@
     - 检查 `app/services/gemini.py`，发现代码中使用了 Pydantic V2 的 `.model_dump()` 方法。将其修改为 V1 兼容的 `.dict()` 方法。
     - 第四次部署失败，原因是 `pip` 找不到 `google-genai==0.3.2` 版本。
     - 根据 `pip` 的可用版本列表，将 `google-genai` 的版本修正为 `0.3.0`。
+    - 第五次部署失败，发现 `google-genai==0.3.0` 仍然依赖 Pydantic V2。
+    - 经过对 `app/services/gemini.py` 的分析，确认项目通过 `httpx` 直接调用 Google API，并未实际使用 `google-genai` SDK。
+    - **最终解决方案**: 从 `requirements.txt` 中彻底移除 `google-genai` 依赖，因为它是不必要的，并且是所有依赖冲突的根源。

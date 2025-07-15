@@ -8,6 +8,5 @@ jinja2
 google-auth==2.38.0
 google-cloud-aiplatform==1.86.0
 pydantic<2
-google-genai==0.3.0
 xxhash
 openai==1.76.0
