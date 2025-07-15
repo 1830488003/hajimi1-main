@@ -64,3 +64,9 @@
     - 用户提供了 API 密钥，并手动填入了 `app/config/settings.py` 文件。
     - 检查了 `app/config/settings.py` 文件，确认 `GEMINI_API_KEYS` 格式正确。
     - 根据用户截图，修改了 `app/config/settings.py` 中的多项配置，包括请求限制、并发数、重试次数等。
+- **问题**: 用户反馈修改配置后，Netlify 没有触发新的部署。
+- **问题分析**: 查看部署日志后发现，Netlify 因为在 `base` 目录 (`page`) 中没有检测到任何内容更改而取消了构建。这是因为最近的修改都在 `app` 目录下，而 `base` 目录的设置限制了 Netlify 的检测范围。
+- **解决方案**: 修改 `netlify.toml` 文件，移除 `base` 目录设置，并相应地调整 `command` 和 `publish` 路径，以确保 Netlify 能检测到整个项目的变更。
+- **问题**: 部署成功后，应用仍然没有加载最新的配置。
+- **问题分析**: 查看部署日志后发现，`functions` 和 `publish` 目录的路径不正确，导致 Netlify 没有正确地部署 serverless function 和前端应用。
+- **解决方案**: 再次修改 `netlify.toml` 文件，将 `publish` 目录修正为 `dist`，并将 `functions` 目录修正为 `../functions`。
