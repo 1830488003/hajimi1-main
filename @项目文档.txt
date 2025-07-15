@@ -42,3 +42,11 @@
         1. 将函数目录从 `netlify/functions` 移动到顶级的 `functions`，以遵循 Netlify 的标准约定。
         2. 简化 `netlify.toml`，移除 `[functions]` 配置块，完全依赖 Netlify 的默认行为。
         3. 使用 `git rm -r netlify` 删除了旧的、多余的目录。
+    - **最终、正确的部署策略**:
+        1. 仔细阅读 `README.md` 后，发现这是一个前后端紧密耦合的项目，前端构建产物需要被后端服务。
+        2. **重构部署流程**:
+            a. 修改 `page/vite.config.js`，将前端构建输出到标准的 `dist` 目录。
+            b. 重写 `netlify.toml`，设置正确的 `base`、`command` 和 `publish` 目录，以正确构建和部署前端。
+            c. 修改 `app/main.py`，移除所有静态文件和模板相关的代码，因为这些将由 Netlify 的静态 CDN 处理。
+            d. 将 `functions/server.py` 恢复为指向主应用 `app.main`。
+            e. 删除了调试用的 `app/debug_main.py`。

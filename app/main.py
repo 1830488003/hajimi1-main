@@ -26,7 +26,7 @@ import sys
 import pathlib
 import os
 # 设置模板目录
-templates = Jinja2Templates(directory="app/templates")
+# templates = Jinja2Templates(directory="app/templates")
 
 app = FastAPI(limit="50M")
 
@@ -240,20 +240,20 @@ async def global_exception_handler(request: Request, exc: Exception):
 app.include_router(router)
 app.include_router(dashboard_router)
 
-# 挂载静态文件目录
-app.mount("/assets", StaticFiles(directory="app/templates/assets"), name="assets")
+# # 挂载静态文件目录
+# app.mount("/assets", StaticFiles(directory="app/templates/assets"), name="assets")
 
-# 设置根路由路径
-dashboard_path = f"/{settings.DASHBOARD_URL}" if settings.DASHBOARD_URL else "/"
+# # 设置根路由路径
+# dashboard_path = f"/{settings.DASHBOARD_URL}" if settings.DASHBOARD_URL else "/"
 
-@app.get(dashboard_path, response_class=HTMLResponse)
-async def root(request: Request):
-    """
-    根路由 - 返回静态 HTML 文件
-    """
-    base_url = str(request.base_url).replace("http", "https")
-    api_url = f"{base_url}v1" if base_url.endswith("/") else f"{base_url}/v1"
-    # 直接返回 index.html 文件
-    return templates.TemplateResponse(
-        "index.html", {"request": request, "api_url": api_url}
-    )
+# @app.get(dashboard_path, response_class=HTMLResponse)
+# async def root(request: Request):
+#     """
+#     根路由 - 返回静态 HTML 文件
+#     """
+#     base_url = str(request.base_url).replace("http", "https")
+#     api_url = f"{base_url}v1" if base_url.endswith("/") else f"{base_url}/v1"
+#     # 直接返回 index.html 文件
+#     return templates.TemplateResponse(
+#         "index.html", {"request": request, "api_url": api_url}
+#     )

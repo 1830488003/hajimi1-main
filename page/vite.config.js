@@ -22,24 +22,8 @@ export default defineConfig({
     },
   },
   build: {
-    // 输出目录设置为 FastAPI 应用的静态文件目录
-    outDir: resolve(__dirname, '../app/templates/assets'),
-    // 不生成 HTML 文件，我们将在 build.js 中手动创建
+    // 输出目录设置为标准的 dist 目录
+    outDir: 'dist',
     emptyOutDir: true,
-    // 禁用自动添加哈希值到文件名
-    rollupOptions: {
-      output: {
-        // 使用固定文件名，不添加哈希值
-        entryFileNames: 'main.js',
-        chunkFileNames: '[name].js',
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') {
-            return 'main.css';
-          }
-          // 对于其他资源，使用原始文件名
-          return '[name].[ext]';
-        }
-      }
-    }
   },
 })
