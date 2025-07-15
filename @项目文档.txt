@@ -30,3 +30,5 @@
     - **最终修复**: 修改 `netlify.toml` 中的构建命令为 `mkdir -p static`，以确保在部署阶段发布目录存在。
     - 部署成功后访问 URL 出现 404 错误。
     - **最终修复**: 再次修改 `netlify.toml`，明确指定 `[functions]` 的 `directory`，以确保 Netlify 能正确找到并部署 serverless function。
+    - 部署后仍然 404，怀疑是 serverless function 内部的路径问题。
+    - **最终修复**: 修改 `app/main.py` 中 `Jinja2Templates` 的目录路径，使其不依赖 `__file__`，从而在 Netlify 环境中更健壮。
