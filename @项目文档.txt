@@ -37,3 +37,8 @@
         1. 创建一个极简的 FastAPI 应用 `app/debug_main.py`。
         2. 修改 `netlify/functions/server.py`，使其指向这个调试应用。
         3. 目的是测试部署配置是否正确。如果这个调试应用能成功运行，说明问题出在原应用的代码中；如果仍然失败，说明问题在配置层面。
+    - 调试应用部署后仍然 404，日志显示 `No Functions were found`。
+    - **最终调试策略**:
+        1. 将函数目录从 `netlify/functions` 移动到顶级的 `functions`，以遵循 Netlify 的标准约定。
+        2. 简化 `netlify.toml`，移除 `[functions]` 配置块，完全依赖 Netlify 的默认行为。
+        3. 使用 `git rm -r netlify` 删除了旧的、多余的目录。
