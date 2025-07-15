@@ -70,5 +70,3 @@
 - **问题**: 部署成功后，应用仍然没有加载最新的配置。
 - **问题分析**: 查看部署日志后发现，`functions` 和 `publish` 目录的路径不正确，导致 Netlify 没有正确地部署 serverless function 和前端应用。
 - **解决方案**: 再次修改 `netlify.toml` 文件，将 `publish` 目录修正为 `dist`，并将 `functions` 目录修正为 `../functions`。
-- **问题**: 部署失败，日志显示 `Configuration property "functionsDirectory" "../functions" must be inside the repository root directory`。
-- **解决方案**: 修正 `netlify.toml`，将 `functions` 的路径从 `../functions` 改为 `functions`，以符合 Netlify 的要求。
