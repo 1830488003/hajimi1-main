@@ -1,0 +1,11 @@
+[build]
+  command = "echo 'Dependencies installed via requirements.txt'"
+  publish = "static" # A dummy directory, as this is a backend service
+
+[functions]
+  included_files = ["app/**"]
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
