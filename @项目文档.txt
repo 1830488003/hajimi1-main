@@ -17,3 +17,5 @@
     - 第三次部署失败，原因是依赖冲突：`google-genai==1.11.0` 要求 `pydantic>=2`。
     - 为了解决冲突，将 `google-genai` 的版本降级到 `0.3.2`，这是一个不强制要求 Pydantic V2 的版本。
     - 检查 `app/services/gemini.py`，发现代码中使用了 Pydantic V2 的 `.model_dump()` 方法。将其修改为 V1 兼容的 `.dict()` 方法。
+    - 第四次部署失败，原因是 `pip` 找不到 `google-genai==0.3.2` 版本。
+    - 根据 `pip` 的可用版本列表，将 `google-genai` 的版本修正为 `0.3.0`。
