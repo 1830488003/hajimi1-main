@@ -14,3 +14,6 @@
     - 将 `.python-version` 文件中的版本修改为 `3.11`，以提高在 Netlify 等平台上的兼容性。
     - 第二次部署仍然失败，日志显示 Netlify 依然在使用 Python 3.13 (`cp313`)，并且因为缺少 Rust 环境而无法编译 `pydantic-core`。
     - 为了避免编译，将 `requirements.txt` 中的 `pydantic==2.6.1` 修改为 `pydantic<2`，以强制使用不需要 Rust 编译的 V1 版本。
+    - 第三次部署失败，原因是依赖冲突：`google-genai==1.11.0` 要求 `pydantic>=2`。
+    - 为了解决冲突，将 `google-genai` 的版本降级到 `0.3.2`，这是一个不强制要求 Pydantic V2 的版本。
+    - 检查 `app/services/gemini.py`，发现代码中使用了 Pydantic V2 的 `.model_dump()` 方法。将其修改为 V1 兼容的 `.dict()` 方法。

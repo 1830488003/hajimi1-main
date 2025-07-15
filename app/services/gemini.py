@@ -153,8 +153,8 @@ class GeminiClient:
         if format_type and (format_type == "gemini"):
             api_version = "v1alpha" if "think" in request.model else "v1beta"
             if request.payload:
-                # 将 Pydantic 模型转换为字典, 假设 Pydantic V2+
-                data = request.payload.model_dump(exclude_none=True)
+                # 将 Pydantic 模型转换为字典, 兼容 V1 和 V2
+                data = request.payload.dict(exclude_none=True)
             # # 注入搜索提示
             # if settings.search["search_mode"] and request.model and request.model.endswith("-search"):
             #     data.insert(len(data)-2,{'role': 'user', 'parts': [{'text':settings.search["search_prompt"]}]})
