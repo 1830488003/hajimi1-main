@@ -1,7 +1,6 @@
 [build]
-  base = "page"
-  command = "npm install && npm run build"
-  publish = "dist"
+  command = "cd page && npm install && npm run build"
+  publish = "page/dist"
   functions = "functions"
 
 [[redirects]]

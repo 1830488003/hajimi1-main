@@ -63,3 +63,4 @@
     - **解决方案**: 在 `netlify.toml` 中添加一条新的重定向规则，将所有 `/api/*` 的请求也重定向到 `/.netlify/functions/server`。
     - 用户提供了 API 密钥，并手动填入了 `app/config/settings.py` 文件。
     - 检查了 `app/config/settings.py` 文件，确认 `GEMINI_API_KEYS` 格式正确。
+    - 根据用户截图，修改了 `app/config/settings.py` 中的多项配置，包括请求限制、并发数、重试次数等。
