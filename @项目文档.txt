@@ -12,3 +12,5 @@
 - **执行步骤**:
     - 读取 `.python-version` 文件，发现版本为 `3.12`。
     - 将 `.python-version` 文件中的版本修改为 `3.11`，以提高在 Netlify 等平台上的兼容性。
+    - 第二次部署仍然失败，日志显示 Netlify 依然在使用 Python 3.13 (`cp313`)，并且因为缺少 Rust 环境而无法编译 `pydantic-core`。
+    - 为了避免编译，将 `requirements.txt` 中的 `pydantic==2.6.1` 修改为 `pydantic<2`，以强制使用不需要 Rust 编译的 V1 版本。
