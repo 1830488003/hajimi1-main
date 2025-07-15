@@ -26,3 +26,5 @@
     - **最终修复**:
         1. 创建 `netlify.toml` 文件，为 FastAPI 应用配置正确的构建和重定向规则。
         2. 创建 `netlify/functions/server.py` 文件，作为 Netlify Functions 的入口点来启动 FastAPI 应用。
+    - 第七次部署失败，错误信息为 `Deploy directory 'static' does not exist`。
+    - **最终修复**: 修改 `netlify.toml` 中的构建命令为 `mkdir -p static`，以确保在部署阶段发布目录存在。

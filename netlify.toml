@@ -1,5 +1,5 @@
 [build]
-  command = "echo 'Dependencies installed via requirements.txt'"
+  command = "mkdir -p static"
   publish = "static" # A dummy directory, as this is a backend service
 
 [functions]
