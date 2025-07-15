@@ -50,3 +50,5 @@
             c. 修改 `app/main.py`，移除所有静态文件和模板相关的代码，因为这些将由 Netlify 的静态 CDN 处理。
             d. 将 `functions/server.py` 恢复为指向主应用 `app.main`。
             e. 删除了调试用的 `app/debug_main.py`。
+    - 部署失败，原因是 `publish` 目录路径错误。
+    - **最终修复**: 修正 `netlify.toml` 中的 `publish` 路径为 `dist`。
