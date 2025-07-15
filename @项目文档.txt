@@ -32,3 +32,8 @@
     - **最终修复**: 再次修改 `netlify.toml`，明确指定 `[functions]` 的 `directory`，以确保 Netlify 能正确找到并部署 serverless function。
     - 部署后仍然 404，怀疑是 serverless function 内部的路径问题。
     - **最终修复**: 修改 `app/main.py` 中 `Jinja2Templates` 的目录路径，使其不依赖 `__file__`，从而在 Netlify 环境中更健壮。
+    - 部署后仍然 404，问题非常顽固。
+    - **调试步骤**:
+        1. 创建一个极简的 FastAPI 应用 `app/debug_main.py`。
+        2. 修改 `netlify/functions/server.py`，使其指向这个调试应用。
+        3. 目的是测试部署配置是否正确。如果这个调试应用能成功运行，说明问题出在原应用的代码中；如果仍然失败，说明问题在配置层面。
