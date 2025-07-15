@@ -23,9 +23,9 @@ STORAGE_DIR = os.environ.get("STORAGE_DIR", "/hajimi/settings/")
 ENABLE_STORAGE = os.environ.get("ENABLE_STORAGE", "false").lower() in ["true", "1", "yes"]
 
 # 并发请求配置
-CONCURRENT_REQUESTS = int(os.environ.get("CONCURRENT_REQUESTS", "1"))  # 默认并发请求数
+CONCURRENT_REQUESTS = int(os.environ.get("CONCURRENT_REQUESTS", "5"))  # 默认并发请求数
 INCREASE_CONCURRENT_ON_FAILURE = int(os.environ.get("INCREASE_CONCURRENT_ON_FAILURE", "0"))  # 失败时增加的并发数
-MAX_CONCURRENT_REQUESTS = int(os.environ.get("MAX_CONCURRENT_REQUESTS", "3"))  # 最大并发请求数
+MAX_CONCURRENT_REQUESTS = int(os.environ.get("MAX_CONCURRENT_REQUESTS", "1"))  # 最大并发请求数
 
 # 缓存配置
 CACHE_EXPIRY_TIME = int(os.environ.get("CACHE_EXPIRY_TIME", "21600"))  # 默认缓存 6 小时 (21600 秒)
@@ -43,23 +43,23 @@ VERTEX_EXPRESS_API_KEY = os.environ.get("VERTEX_EXPRESS_API_KEY", "")
 
 # 联网搜索配置
 search={
-    "search_mode":os.environ.get("SEARCH_MODE", "false").lower() in ["true", "1", "yes"],
+    "search_mode":os.environ.get("SEARCH_MODE", "false").lower() in ["false", "0", "no"],
     "search_prompt":os.environ.get("SEARCH_PROMPT", "（使用搜索工具联网搜索，需要在content中结合搜索内容）").strip('"')
 }
 
 #随机字符串
 RANDOM_STRING = os.environ.get("RANDOM_STRING", "true").lower() in ["true", "1", "yes"]
-RANDOM_STRING_LENGTH = int(os.environ.get("RANDOM_STRING_LENGTH", "5"))
+RANDOM_STRING_LENGTH = int(os.environ.get("RANDOM_STRING_LENGTH", "0"))
 
 # 空响应重试次数限制
-MAX_EMPTY_RESPONSES = int(os.environ.get("MAX_EMPTY_RESPONSES", "5"))  # 默认最多允许5次空响应
+MAX_EMPTY_RESPONSES = int(os.environ.get("MAX_EMPTY_RESPONSES", "3"))  # 默认最多允许3次空响应
 
 # ---------- 以下是其他配置信息 ----------
 
 # 访问限制
-MAX_RETRY_NUM = int(os.environ.get("MAX_RETRY_NUM", "15")) # 请求时的最大总轮询 key 数
-MAX_REQUESTS_PER_MINUTE = int(os.environ.get("MAX_REQUESTS_PER_MINUTE", "30")) 
-MAX_REQUESTS_PER_DAY_PER_IP = int(os.environ.get("MAX_REQUESTS_PER_DAY_PER_IP", "600"))
+MAX_RETRY_NUM = int(os.environ.get("MAX_RETRY_NUM", "5")) # 请求时的最大总轮询 key 数
+MAX_REQUESTS_PER_MINUTE = int(os.environ.get("MAX_REQUESTS_PER_MINUTE", "300")) 
+MAX_REQUESTS_PER_DAY_PER_IP = int(os.environ.get("MAX_REQUESTS_PER_DAY_PER_IP", "6000000"))
 
 # API密钥使用限制
 API_KEY_DAILY_LIMIT = int(os.environ.get("API_KEY_DAILY_LIMIT", "100"))# 默认每个API密钥每24小时可使用100次
