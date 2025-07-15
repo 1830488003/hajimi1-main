@@ -55,10 +55,11 @@
 
 ## 2025-07-15 (下午)
 
-- **任务**: 配置管理员密码。
+- **任务**: 配置管理员密码和 API 密钥。
 - **执行步骤**:
-    - 修改 `app/config/settings.py` 文件。
-    - 将 `WEB_PASSWORD` 的默认值设置为 `67564534`。
-- **问题**: 用户反馈使用新密码时出现 "HTTP 404" 错误。
-- **问题分析**: 404 错误表明请求的 URL 不存在，而不是密码认证失败。经过排查，发现 `netlify.toml` 文件中只配置了 `/v1/*` 的重定向规则，而前端发送的 `/api/update-config` 请求没有被正确路由到后端 serverless function。
-- **解决方案**: 在 `netlify.toml` 中添加一条新的重定向规则，将所有 `/api/*` 的请求也重定向到 `/.netlify/functions/server`。
+    - 修改 `app/config/settings.py` 文件，将 `WEB_PASSWORD` 的默认值设置为 `67564534`。
+    - 用户反馈使用新密码时出现 "HTTP 404" 错误。
+    - **问题分析**: 404 错误表明请求的 URL 不存在，而不是密码认证失败。经过排查，发现 `netlify.toml` 文件中只配置了 `/v1/*` 的重定向规则，而前端发送的 `/api/update-config` 请求没有被正确路由到后端 serverless function。
+    - **解决方案**: 在 `netlify.toml` 中添加一条新的重定向规则，将所有 `/api/*` 的请求也重定向到 `/.netlify/functions/server`。
+    - 用户提供了 API 密钥，并手动填入了 `app/config/settings.py` 文件。
+    - 检查了 `app/config/settings.py` 文件，确认 `GEMINI_API_KEYS` 格式正确。
